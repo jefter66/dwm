@@ -1,0 +1,19 @@
+  /home/jefter66/Workspace/dwm-testings:
+  total used in directory 264K available 90.2 GiB
+  -rw-r--r-- 1 jefter66 wheel 1.2K Nov 11 17:18   Makefile
+  -rw-r--r-- 1 jefter66 wheel 6.2K Nov 11 17:18   config.def.h
+  -rw-r--r-- 1 jefter66 wheel 7.4K Nov 11 17:18   config.h
+  -rw-r--r-- 1 jefter66 wheel  926 Nov 11 17:18   config.mk
+  -rw-r--r-- 1 jefter66 wheel  11K Nov 11 17:18   drw.c
+  -rw-r--r-- 1 jefter66 wheel 1.7K Nov 11 17:18   drw.h
+  -rw-r--r-- 1 jefter66 wheel  11K Nov 11 17:18   drw.o
+  -rwxr-xr-x 1 jefter66 wheel  66K Nov 11 17:18   dwm
+  -rw-r--r-- 1 jefter66 wheel  52K Nov 11 17:18   dwm.c
+  -rw-r--r-- 1 jefter66 wheel  58K Nov 11 17:18   dwm.o
+  -rw-r--r-- 1 jefter66 wheel  373 Nov 11 17:18   dwm.png
+  -rw-r--r-- 1 jefter66 wheel 2.6K Nov 11 17:18   dwm-movestack-6.1.diff
+  -rw-r--r-- 1 jefter66 wheel 5.0K Nov 11 17:18   dwm.1
+  -rw-r--r-- 1 jefter66 wheel  847 Nov 11 17:18   transient.c
+  -rw-r--r-- 1 jefter66 wheel  517 Nov 11 17:18   util.c
+  -rw-r--r-- 1 jefter66 wheel  305 Nov 11 17:18   util.h
+  -rw-r--r-- 1 jefter66 wheel 2.3K Nov 11 17:18   util.o

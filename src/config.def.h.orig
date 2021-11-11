@@ -44,16 +44,12 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define ALTKEY Mod1Mask
-#define MODKEY Mod4Mask
-
-
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -63,42 +59,10 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
-static const char *emacs[]  = { "emacs", NULL };
-static const char *firefox[]  = { "firefox", NULL };
-static const char *brave[]  = { "brave", NULL };
-static const char *discord[]  = { "discord", NULL };
-static const char *telegram[]  = { "telegram-desktop", NULL };
-static const char *thunar[]  = { "thunar", NULL };
-static const char *ranger[]  = { "st -e ranger", NULL };
-static const char *nitrogen[]  = {nitrogen, NULL };
-static const char *xreader[]  = { xreader, NULL };
-
-
-
-#include "movestack.c"
 static Key keys[] = {
-
-  /* movestack */
-  { MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
-  { MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-
-	{ MODKEY|ShiftMask,             XK_e, spawn,          {.v = emacs} },
-	{ MODKEY|ShiftMask,             XK_f, spawn,          {.v = firefox } },
-	{ MODKEY|ShiftMask,             XK_b, spawn,          {.v = brave } },
-	{ MODKEY|ShiftMask,             XK_d, spawn,          {.v = discord } },
-	{ MODKEY|ShiftMask,             XK_t, spawn,          {.v = telegram } },
-	{ ALTKEY|ShiftMask,             XK_f, spawn,          {.v = xreader } },
-	{ MODKEY|ShiftMask,             XK_n, spawn,          {.v = nitrogen } },
-	{ MODKEY|ShiftMask,             XK_r, spawn,          {.v = ranger } },
-	{ MODKEY|ShiftMask,             XK_c, spawn,          {.v = thunar } },
-
-
-
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -108,7 +72,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -129,11 +93,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY,             XK_F12,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
 /* button definitions */
-/* click can be ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
+/* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
@@ -148,3 +112,4 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
