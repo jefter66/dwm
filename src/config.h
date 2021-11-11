@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -26,7 +26,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5","6" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -34,8 +34,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Gimp",     NULL,       NULL,      0,            1,           -1 },
+	{ "Firefox",  NULL,       NULL,      1 << 9,       0,           -1 },
+	{ "TelegramDesktop",  NULL, NULL,    1 << 9,       1,           -1 },
+	{ "Xreader",  NULL,      NULL,       1 << 9,       1,           -1 },
+	{ "Thunar",  NULL,       NULL,       1 << 9,       1,           -1 },
+	{ "St",  NULL,   "pulsemixer",       1 << 9,       1,           -1 },
 };
 
 /* layout(s) */
@@ -76,11 +80,12 @@ static const char *brave[]  = { "brave", NULL };
 static const char *discord[]  = { "discord", NULL };
 static const char *telegram[]  = { "telegram-desktop", NULL };
 static const char *thunar[]  = { "thunar", NULL };
-static const char *ranger[]  = { "st -e ranger", NULL };
-static const char *nitrogen[]  = {nitrogen, NULL };
-static const char *xreader[]  = { xreader, NULL };
-
-
+static const char *nitrogen[]  = {"nitrogen", NULL };
+static const char *xreader[]  = { "xreader", NULL };
+static const char *keepassxc[]  = { "keepassxc", NULL };
+static const char *pavucontrol[]  = { "pavucontrol", NULL };
+static const char *power_manager[]  = { "mate-power-preferences", NULL };
+//static const char *xournalpp[]  = { "xournalpp /home/jefter66/Dropbox/.xournalpp/template.xopp", NULL };
 
 #include "movestack.c"
 static Key keys[] = {
@@ -99,12 +104,23 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_b, spawn,          {.v = brave } },
 	{ MODKEY|ShiftMask,             XK_d, spawn,          {.v = discord } },
 	{ MODKEY|ShiftMask,             XK_t, spawn,          {.v = telegram } },
-	{ ALTKEY|ShiftMask,             XK_f, spawn,          {.v = xreader } },
 	{ MODKEY|ShiftMask,             XK_n, spawn,          {.v = nitrogen } },
-	{ MODKEY|ShiftMask,             XK_r, spawn,          {.v = ranger } },
 	{ MODKEY|ShiftMask,             XK_c, spawn,          {.v = thunar } },
+	{ MODKEY|ShiftMask,             XK_p, spawn,          {.v = keepassxc}},
+//	{ MODKEY|ShiftMask,             XK_x, spawn,          {.v = xournalpp}},
+
+	{ ALTKEY|ShiftMask,             XK_b, spawn,          {.v = power_manager}},
+	{ ALTKEY|ShiftMask,             XK_v, spawn,          {.v = pavucontrol}},
+	{ ALTKEY|ShiftMask,             XK_f, spawn,          {.v = xreader } },
 
 
+	{ MODKEY|ShiftMask,	  	        XK_r,			spawn,		SHCMD("st -e ranger") },
+	{ MODKEY|ShiftMask,	  	        XK_m,			spawn,		SHCMD("st -e ncmpcpp") },
+
+	{ ALTKEY|ShiftMask,	  	        XK_p,			spawn,		SHCMD("st -e pulsemixer") },
+	{ ALTKEY|ShiftMask,	  	        XK_r,			spawn,		SHCMD("st -e julia") },
+	{ MODKEY|ShiftMask,	  	        XK_x,			spawn,		SHCMD("xournalpp /home/jefter66/Dropbox/.xournalpp/template.xopp") },
+	{0,	  	                        XK_Print,			spawn,  SHCMD("mate-screenshot -a") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -133,9 +149,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+//	TAGKEYS(                        XK_7,                      6)
+//	TAGKEYS(                        XK_8,                      7)
+//	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY,             XK_F12,      quit,           {0} },
 };
 
