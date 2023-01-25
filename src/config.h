@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 16;       /* snap pixel */
 
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -12,20 +12,20 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
-static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const unsigned int systrayspacing = 5;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;     /* 0 means no systray */
+static const int showsystray        = 1;        /* 0 means no systray */
 
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Noto Sans Mono:size=12", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  };
-static const char dmenufont[]       = "Noto Sans Mono:size=15";
+static const char *fonts[]          = { "Iosevka:size=12", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  };
+static const char dmenufont[]       = "Iosevka:size=15";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#233F5C";
-static const char active_border[]   = "#9F34BB";
+static const char active_border[]   = "#282828";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -33,7 +33,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5"};
+static const char *tags[] = { "1", "2", "3", "4"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -85,16 +85,17 @@ static const char *termcmd[]  = { "st", NULL };
 
 static const char *emacs[]  = { "emacs", NULL };
 static const char *brave[]  = { "brave", NULL };
+static const char *telegram[]  = { "telegram-desktop", NULL };
 static const char *chrome[]  = { "google-chrome-stable", NULL };
 static const char *thunar[]  = { "thunar", NULL };
-static const char *nitrogen[]  = {"nitrogen", NULL };
-static const char *okular[]  = { "okular", NULL };
+static const char *evince[]  = { "evince", NULL };
 static const char *keepassxc[]  = { "keepassxc", NULL };
 static const char *pavucontrol[]  = { "pavucontrol", NULL };
 static const char *power_manager[]  = { "mate-power-preferences", NULL };
 static const char *alarm_clock_applet[]  = { "alarm-clock-applet", NULL };
 static const char *spotify[]  = { "spotify-tray", NULL };
 static const char *xournalpp[]  = { "xournalpp", NULL };
+static const char *nautilus[] = {"nautilus", NULL};
 
 
 //static const char *xournalpp[]  = { "xournalpp /home/jefter66/Dropbox/.xournalpp/template.xopp", NULL };
@@ -111,11 +112,14 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
   { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 
-  { MODKEY|ShiftMask,             XK_e, spawn,          {.v = emacs} },
-  { MODKEY|ShiftMask,             XK_f, spawn,          {.v = brave} },
-  { MODKEY|ShiftMask,             XK_b, spawn,          {.v = chrome } },
-  { MODKEY|ShiftMask,             XK_n, spawn,          {.v = nitrogen } },
-  { MODKEY|ShiftMask,             XK_c, spawn,          {.v = thunar } },
+  { MODKEY|ShiftMask,             XK_e, spawn,          {.v = emacs}},
+  { MODKEY|ShiftMask,             XK_f, spawn,          {.v = brave}},
+  { MODKEY|ShiftMask,             XK_b, spawn,          {.v = chrome }},
+
+  { MODKEY|ShiftMask,             XK_t, spawn,          {.v = telegram }},
+
+  { MODKEY|ShiftMask,             XK_c, spawn,          {.v = nautilus}},
+  //  { MODKEY|ShiftMask,             XK_c, spawn,          {.v = thunar } },
   { MODKEY|ShiftMask,             XK_p, spawn,          {.v = keepassxc}},
   { MODKEY|ShiftMask,             XK_a, spawn,          {.v = alarm_clock_applet}},
   { MODKEY|ShiftMask,             XK_x, spawn,          {.v = xournalpp}},
@@ -123,10 +127,10 @@ static Key keys[] = {
 
   { ALTKEY|ShiftMask,             XK_b, spawn,          {.v = power_manager}},
   { ALTKEY|ShiftMask,             XK_v, spawn,          {.v = pavucontrol}},
-  { ALTKEY|ShiftMask,             XK_f, spawn,          {.v = okular } },
+  { ALTKEY|ShiftMask,             XK_f, spawn,          {.v = evince } },
 
   // Having to use xterm for now bc somehow st doesn't show pdf preview and idk i
-  { MODKEY|ShiftMask,	  	        XK_r,			spawn,		SHCMD("xterm -e ranger") },
+  { MODKEY|ShiftMask,	  	        XK_r,			spawn,		SHCMD("st -e ranger") },
   { MODKEY|ShiftMask,	  	        XK_m,			spawn,		SHCMD("st -e ncmpcpp") },
 
   { ALTKEY|ShiftMask,	  	        XK_p,			spawn,		SHCMD("st -e pulsemixer") },
@@ -181,10 +185,10 @@ static Key keys[] = {
   TAGKEYS(                        XK_3,                      2)
   TAGKEYS(                        XK_4,                      3)
   TAGKEYS(                        XK_5,                      4)
-//	TAGKEYS(                        XK_6,                      5)
-//	TAGKEYS(                        XK_7,                      6)
-//	TAGKEYS(                        XK_8,                      7)
-//	TAGKEYS(                        XK_9,                      8)
+  TAGKEYS(                        XK_6,                      5)
+  TAGKEYS(                        XK_7,                      6)
+  TAGKEYS(                        XK_8,                      7)
+  TAGKEYS(                        XK_9,                      8)
   { MODKEY,             XK_F12,      quit,           {0} },
 };
 
