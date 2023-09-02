@@ -103,7 +103,7 @@ static const char *telegram[] = {"telegram-desktop", NULL};
 static const char *discord[] = {"discord", NULL};
 
 static const char *chrome[] = {"google-chrome-stable", NULL};
-static const char *evince[] = {"evince", NULL};
+static const char *pdf_reader[] = {"xreader", NULL};
 
 static const char *keepassxc[] = {"keepassxc", NULL};
 static const char *pavucontrol[] = {"pavucontrol", NULL};
@@ -144,7 +144,7 @@ static Key keys[] = {
 
     {ALTKEY | ShiftMask, XK_b, spawn, {.v = power_manager}},
     {ALTKEY | ShiftMask, XK_v, spawn, {.v = pavucontrol}},
-    {ALTKEY | ShiftMask, XK_f, spawn, {.v = evince}},
+    {ALTKEY | ShiftMask, XK_f, spawn, {.v = pdf_reader}},
 
     // Having to use xterm for now bc somehow st doesn't show pdf preview and
     // idk i
